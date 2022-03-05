@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const user = require("./Api/User");
 const email = require("./Api/Email");
-require("dotenv");
-const PORT = 3000 || process.env.PORT;
+const PORT = 5000 || process.env.PORT;
 
 // middleware to get parsed json data from request
 app.use(express.json());
@@ -12,8 +11,7 @@ app.use("/api/user", user);
 app.use("/api/subscribe", email);
 
 app.get("/", (req, res) => {
-  console.log(req.path);
-  res.status(400).send("Done");
+  res.send("Done");
 });
 
 app.listen(PORT, () => {
