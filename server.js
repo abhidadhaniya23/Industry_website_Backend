@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const user = require("./Api/User");
+const email = require("./Api/Email");
 require("dotenv");
 const PORT = 3000 || process.env.PORT;
 
@@ -8,6 +9,7 @@ const PORT = 3000 || process.env.PORT;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/api/user", user);
+app.use("/api/subscribe", email);
 
 app.get("/", (req, res) => {
   console.log(req.path);

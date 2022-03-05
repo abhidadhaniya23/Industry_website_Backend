@@ -10,18 +10,7 @@ mongoose
   .catch((err) => console.error("could not connect to db.", err));
 
 // creating user schema
-const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  message: {
-    type: String,
-  },
-  contact: {
-    type: String,
-    required: true,
-  },
+const emailSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
@@ -33,6 +22,6 @@ const userSchema = new mongoose.Schema({
 });
 
 // create a userData named collection
-const userData = mongoose.model("user", userSchema);
+const emailData = mongoose.model("EmailData", emailSchema);
 
-module.exports = userData;
+module.exports = emailData;
