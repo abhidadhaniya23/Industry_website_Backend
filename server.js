@@ -17,7 +17,7 @@ const checkApi = () => {
 };
 
 // middleware to get parsed json data from request
-app.use(cors());
+app.use(cors({ origin: "https://shreebaiindustries.herokuapp.com" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", checkApi());

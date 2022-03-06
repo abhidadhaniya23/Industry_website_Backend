@@ -1,11 +1,11 @@
 const express = require("express");
 const User = require("../Model/User");
-const { check, validationResult } = require("express-validator");
+// const { check, validationResult } = require("express-validator");
 require("dotenv").config();
 const user = express.Router();
 
 // check validation... (if !true => msg send)
-const validator = [check("name", "Name is invalid").not().isEmpty().isLength({ min: 4 }), check("contact", "Invalid Mobile Number.").isLength({ min: 10 }), check("email", "Please include a valid email").isEmail()];
+// const validator = [check("name", "Name is invalid").not().isEmpty().isLength({ min: 4 }), check("contact", "Invalid Mobile Number.").isLength({ min: 10 }), check("email", "Please include a valid email").isEmail()];
 
 // admin view to show data from database
 user.get("/getData", async (req, res) => {
@@ -17,12 +17,12 @@ user.get("/getData", async (req, res) => {
   }
 });
 
-user.post("/register", validator, (req, res) => {
+user.post("/register", (req, res) => {
   // check if any validation is not true then send error
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ error: errors.errors });
-  }
+  // const errors = validationResult(req);
+  // if (!errors.isEmpty()) {
+  //   res.status(400).json({ error: errors.errors });
+  // }
 
   // creating user to send message to server
   const createUser = async () => {
