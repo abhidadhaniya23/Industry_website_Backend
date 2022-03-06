@@ -3,6 +3,7 @@ const app = express();
 const user = require("./Api/User");
 const email = require("./Api/Email");
 const { check } = require("express-validator");
+import cors from "cors";
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 
@@ -17,6 +18,7 @@ const checkApi = () => {
 };
 
 // middleware to get parsed json data from request
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/", checkApi());
