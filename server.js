@@ -2,8 +2,7 @@ const express = require("express");
 const app = express();
 const user = require("./Api/User");
 const email = require("./Api/Email");
-const { check } = require("express-validator");
-import cors from "cors";
+const cors = require("cors");
 require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 
