@@ -9,13 +9,42 @@ const user = express.Router();
 
 // admin view to show data from database
 user.get("/getData", async (req, res) => {
-  const userData = await User.find();
-  if (userData.length === 0) {
-    res.status(404).json({ Message: "No users are there." });
-  } else {
-    res.status(200).json(userData);
+  switch (req.query.sort) {
+    case "nameA":
+      const ascendingName = await User.find().sort({ name: 1 });
+      res.status(200).json(ascendingName);
+      break;
+    case "nameD":
+      const descendingName = await User.find().sort({ name: -1 });
+      res.status(200).json(descendingName);
+      break;
+    case "message":
+      const message = await User.find().sort({ message: 1 });
+      res.status(200).json(message);
+      break;
+    case "descending":
+      const descending = await User.find().sort({ created: -1 });
+      res.status(200).json(descending);
+      break;
+    default:
+      // Ascending Order
+      const userData = await User.find();
+      if (userData.length === 0) {
+        res.status(404).json({ Message: "No users are there." });
+      } else {
+        res.status(200).json(userData);
+      }
+      break;
   }
 });
+
+// limited responses
+user.get("/getData/:limit", async (req, res) => {
+  const limitedUsers = await User.find().limit(req.params.limit);
+  res.status(200).json(limitedUsers);
+});
+
+// Sorting in ascending order
 
 user.post("/register", (req, res) => {
   // check if any validation is not true then send error
