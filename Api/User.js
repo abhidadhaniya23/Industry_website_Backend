@@ -22,13 +22,13 @@ user.get("/getData", async (req, res) => {
       const message = await User.find().sort({ message: 1 });
       res.status(200).json(message);
       break;
-    case "descending":
-      const descending = await User.find().sort({ created: -1 });
-      res.status(200).json(descending);
+    case "ascending":
+      const ascending = await User.find().sort({ created: 1 });
+      res.status(200).json(ascending);
       break;
     default:
       // Ascending Order
-      const userData = await User.find();
+      const userData = await User.find().sort({ created: -1 });
       if (userData.length === 0) {
         res.status(404).json({ Message: "No users are there." });
       } else {
@@ -40,7 +40,7 @@ user.get("/getData", async (req, res) => {
 
 // limited responses
 user.get("/getData/:limit", async (req, res) => {
-  const limitedUsers = await User.find().limit(req.params.limit);
+  const limitedUsers = await User.find().limit(req.params.limit).sort({ created: -1 });
   res.status(200).json(limitedUsers);
 });
 
