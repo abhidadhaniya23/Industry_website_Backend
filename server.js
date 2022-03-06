@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const user = require("./Api/User");
 const email = require("./Api/Email");
+require("dotenv").config();
 const PORT = 5000 || process.env.PORT;
 
 // middleware to get parsed json data from request
@@ -15,5 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
+  console.log(process.env.MONGO_URI_USERNAME);
+  console.log(process.env.MONGO_URI_PASSWORD);
   console.log(`Your app is running at ${PORT}`);
 });
