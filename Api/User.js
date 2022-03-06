@@ -41,7 +41,7 @@ user.post("/register", validator, (req, res) => {
 
       // everything okay, save user in database
       await userData.save();
-      res.status(400).json(userData);
+      res.status(200).json(userData);
     } catch (err) {
       console.log("error : ", err);
     }

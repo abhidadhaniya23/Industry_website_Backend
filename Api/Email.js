@@ -31,7 +31,7 @@ email.post("/email", validator, (req, res) => {
       });
 
       await emailDatas.save();
-      res.status(400).json(emailDatas);
+      res.status(200).json(emailDatas);
     } catch (err) {
       console.log("error : ", err);
     }
