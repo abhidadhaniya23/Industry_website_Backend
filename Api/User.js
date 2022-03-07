@@ -85,4 +85,18 @@ user.post("/register", (req, res) => {
   createUser();
 });
 
+// delete record from database
+user.post("/deleteRecord", (req, res) => {
+  // req.query.delete
+  const deleteRecordFn = async () => {
+    const deletedUser = await User.findByIdAndDelete({ _id: req.query.delete });
+    if (deletedUser) {
+      res.status(200).json({ deletedUser: deletedUser });
+    } else {
+      res.status(404).json({ msg: "User not deleted" });
+    }
+  };
+  deleteRecordFn();
+});
+
 module.exports = user;
